@@ -1,0 +1,35 @@
+message SearchRequest {
+    required string query = 1;
+    optional int32 page_number = 2 [default = 1];         // 页数
+    optional int32 result_per_page = 3;     // 每页的结果
+    enum Corpus {
+        WEB = 1;
+        NEWS = 2;
+        VIDEO = 3;
+    }
+    optional Corpus corpus = 4 [default = UNIVERSAL];
+}
+
+message SearchResponse {
+    repeated Result result = 1;
+}
+
+message Result {
+    required string url = 1;
+    optional string title = 2;
+    optional string snippets = 3;
+}
+
+enum EnumAllowingAlias {
+    option allow_alias = true;
+    UNKNOWN = 0;
+    STARTED = 1;
+    RUNING = 1;
+}
+
+enum EnumNotAllowingAlias {
+    UNKNOWN = 0;
+    STARTED = 1;
+    // RUNING = 1;
+}
+
